@@ -1,0 +1,16 @@
+[*]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+trim_trailing_whitespace = true
+indent_size = 4
+
+[*.go]
+end_of_line = lf
+charset = utf-8
+indent_style = tab
+
+[Makefile]
+end_of_line = lf
+charset = utf-8
+indent_style = tab

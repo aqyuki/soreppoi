@@ -1,11 +1,10 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
+	"fmt"
 	"os"
 
+	"github.com/aqyuki/soreppoi/internal"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +13,16 @@ var rootCmd = &cobra.Command{
 	Use:   "soreppoi",
 	Short: "It displays a screen that looks like that.",
 	Long:  `You can use it in front of your friends who are PC novices and be a little proud of yourself!`,
+	Run: func(cmd *cobra.Command, args []string) {
+		err := internal.PrintSorrepoiStrings(time)
+		if err != nil {
+			fmt.Printf("%+v\n", err)
+		}
+	},
 }
+
+// time is a variable that stores the startup time.
+var time int32
 
 func Execute() {
 	err := rootCmd.Execute()
@@ -24,5 +32,5 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().Int32VarP(&time, "time", "t", 5, "Specify the startup time. (in seconds) Default is 5 seconds")
 }
